@@ -83,8 +83,7 @@ void loop()
   doc["p1"] = press2;
   String metricsJSON;
   serializeJson(doc, metricsJSON);
-
-
+  Serial.println(metricsJSON);
   Serial.println();
 
   // send data to server
