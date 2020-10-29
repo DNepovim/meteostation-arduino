@@ -73,12 +73,8 @@ void loop()
   ds.requestTemperatures();
   temp3 = ds.getTempCByIndex(0);
 
-  // get time
-  timestamp = millis()/1000;
-
   // serialize data to JSON
   DynamicJsonDocument doc(1024);
-  doc["time"] = timestamp;
   doc["t1"] = temp1;
   doc["t2"] = temp2;
   doc["t3"] = temp3;
