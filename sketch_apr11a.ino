@@ -2,7 +2,6 @@
 #include <DHT.h>
 #include <DHT_U.h>
 #include <Wire.h>
-#include <LiquidCrystal_I2C.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
 #include <OneWire.h>
@@ -10,10 +9,6 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
-
-
-// LCD display
-LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
 // sensor DHT 22 – temperature and humidity
 #define DHTPIN D8
@@ -41,17 +36,11 @@ const char* wifiPass = "";
 // HTTP client
 const char* serverHost = "http://my-meteostation.herokuapp.com/metrics";
 
-
-
 // time
 int timestamp;
                                 
 void setup()
 {
-  // init LCD
-  lcd.begin();
-  lcd.backlight();
-
   // init serial monitor
   Serial.begin(9600);
 
@@ -61,9 +50,6 @@ void setup()
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.println("WiFi connecting...");
-    lcd.clear();
-    lcd.setCursor(0,0);
-    lcd.print("WiFi connecting...");
   }
 
 
@@ -160,42 +146,5 @@ void loop()
   Serial.print("Tl: ");
   Serial.print(press2);
   Serial.println(" hPa.");
-
-  //print values to LCD
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("Teplota  ");
-  lcd.print(temp1);
-  lcd.setCursor(0,1);
-  lcd.print(" ");
-  lcd.print(temp2);
-  lcd.print("   ");
-  lcd.print(temp3);
-  lcd.print((char)223);            
-  lcd.print("C");
-
-  delay(3000);  
-
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("Vlhkost");
-  lcd.setCursor(0,1);
-  lcd.print(" ");
-  lcd.print(hum1);
-  lcd.print(" ");
-  lcd.print(hum2);
-  lcd.print(" %");
-
-  delay(3000);  
-  
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("Tlak");
-  lcd.setCursor(0,1);
-  lcd.print(" ");
-  lcd.print(press2);
-  lcd.print(" hPa");
-  
-  delay(3000);    
 
 }
