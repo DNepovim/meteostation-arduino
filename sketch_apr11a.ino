@@ -119,8 +119,6 @@ void loop()
 
     http.end();
   }
-
-  delay(10000);
   
   // print values to serial monitor
   Serial.print("T: ");
@@ -131,15 +129,14 @@ void loop()
   Serial.print(temp3);
   Serial.print(" ");
   Serial.println("C");
-
   Serial.print("V: ");
   Serial.print(hum1);
   Serial.print("/");
   Serial.print(hum2);
   Serial.println(" %");
-  
   Serial.print("Tl: ");
   Serial.print(press2);
   Serial.println(" hPa.");
 
+  delay(3600000);
 }
